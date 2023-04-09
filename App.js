@@ -69,23 +69,25 @@ export default function App() {
       </View>
       <View>
         {
-          botao1 ? null : <FlatList
+          botao1 
+          ? 
+          null 
+          :
+          <ScrollView>
+          <FlatList
             numColumns={1}
             keyExtractor={(item) => item.key}
             data={site}
             renderItem={({ item }) => (
               <Text> cadastrado: {item.site}</Text>
-
-            )}
-
-          />
+            )}/>
+            </ScrollView> 
         }
       </View>
 
 
 
     </View>
-
   );
 }
 
