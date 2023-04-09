@@ -8,11 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 export default function App() {
 
   const [site, setSite] = useState([
-    { site: site, key: 1},
-    { site: site, key: 2},
-    { site: site, key: 3},
-    { site: site, key: 4},
-    { site: site, key: 5}
+    { site: site, key: 1 },
+    { site: site, key: 2 },
+    { site: site, key: 3 },
+    { site: site, key: 4 },
+    { site: site, key: 5 }
   ]); //Conceito useState (1,0 ponto)
   const [senha, setSenha] = useState('');
   const [esconder, setEsconder] = useState(true);
@@ -33,14 +33,14 @@ export default function App() {
 
   return (
     //Conceito de View (0,5 pontos)
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <StatusBar style="auto" />
       <View>
         <Text style={styles.login}>Login's Security</Text>
       </View>
       <View style={styles.alinhar}>
         <View style={styles.box}>
-          <MaterialIcons name="email" size={20} color="black" style={styles.icon}/>
+          <MaterialIcons name="email" size={20} color="black" style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Enter site name"
@@ -51,39 +51,39 @@ export default function App() {
           </View>
         </View>
         <View style={styles.box}>
-          <Ionicons name="ios-key" size={20} color="black" style={styles.icon}/>
+          <Ionicons name="ios-key" size={20} color="black" style={styles.icon} />
           <TextInput
             style={styles.input}
             placeholder="Enter your password"
             placeholderTextColor={'#d3d3d3'}
             onChangeText={(senhaDigitada) => setSenha(senhaDigitada)}
             secureTextEntry={esconder}
-           />
-          <TouchableOpacity style={styles.olho} onPress={ () => setEsconder(!esconder)}>
-            <Ionicons name='eye' color="black" size={25}/>
+          />
+          <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
+            <Ionicons name='eye' color="black" size={25} />
           </TouchableOpacity>
         </View>
         <View>
-          <Button title={texto} onPress={apertou} color='red'/>
+          <Button title={texto} onPress={apertou} color='red' />
         </View>
       </View>
-      {/* <View>
+      <View>
         {
-          botao1 ? null : <Text> Site cadastrado: {site} e senha: {senha}</Text>
-        }
-     </View> */}
+          botao1 ? null : <FlatList
+            numColumns={1}
+            keyExtractor={(item) => item.key}
+            data={site}
+            renderItem={({ item }) => (
+              <Text> cadastrado: {item.site}</Text>
 
-     <FlatList
-     numColumns={1}
-     keyExtractor={(item) => item.key}
-     data={site}
-     renderItem={({ item }) => (
-      <Text> cadastrado: {item.site}</Text>
-    
-     )}
-     
-     />
-      
+            )}
+
+          />
+        }
+      </View>
+
+
+
     </View>
 
   );
