@@ -1,13 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 import { Button } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'; //Conceito de biblioteca vector (0,5 pontos)
 import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
 
-  const [site, setSite] = useState(''); //Conceito useState (1,0 ponto)
+  const [site, setSite] = useState([
+    { site: site, key: 1},
+    { site: site, key: 2},
+    { site: site, key: 3},
+    { site: site, key: 4},
+    { site: site, key: 5}
+  ]); //Conceito useState (1,0 ponto)
   const [senha, setSenha] = useState('');
   const [esconder, setEsconder] = useState(true);
 
@@ -65,7 +71,12 @@ export default function App() {
         {
           botao1 ? null : <Text> Site cadastrado: {site} e senha: {senha}</Text>
         }
-      </View>
+     </View>
+     <FlatList
+     
+     
+     />
+      
     </View>
 
   );
