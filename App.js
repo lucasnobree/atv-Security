@@ -67,13 +67,20 @@ export default function App() {
           <Button title={texto} onPress={apertou} color='red'/>
         </View>
       </View>
-      <View>
+      {/* <View>
         {
           botao1 ? null : <Text> Site cadastrado: {site} e senha: {senha}</Text>
         }
-     </View>
+     </View> */}
+
      <FlatList
-     
+     numColumns={1}
+     keyExtractor={(item) => item.key}
+     data={site}
+     renderItem={({ item }) => (
+      <Text> cadastrado: {item.site}</Text>
+    
+     )}
      
      />
       
