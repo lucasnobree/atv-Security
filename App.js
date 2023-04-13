@@ -7,13 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
 
-  const [site, setSite] = useState([
-    { site: site, key: 1 },
-    { site: site, key: 2 },
-    { site: site, key: 3 },
-    { site: site, key: 4 },
-    { site: site, key: 5 }
-  ]); //Conceito useState (1,0 ponto)
+  const [email, setSite] = useState(''); //Conceito useState (1,0 ponto)
   const [senha, setSenha] = useState('');
   const [esconder, setEsconder] = useState(true);
 
@@ -73,15 +67,7 @@ export default function App() {
           ? 
           null 
           :
-          <ScrollView>
-          <FlatList
-            numColumns={1}
-            keyExtractor={(item) => item.key}
-            data={site}
-            renderItem={({ item }) => (
-              <Text> cadastrado: {item.site}</Text>
-            )}/>
-            </ScrollView> 
+          <Text> Email: {email} | Senha: {senha}</Text>
         }
       </View>
 
