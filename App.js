@@ -1,133 +1,150 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native';
-import { Button } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons'; //Conceito de biblioteca vector (0,5 pontos)
+import React, { useState } from 'react';
+import {
+  View, Text, StyleSheet, TextInput, Button, FlatList, ScrollView, TouchableOpacity
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function App() {
-
-  const [email, setSite] = useState(''); //Conceito useState (1,0 ponto)
-  const [senha, setSenha] = useState('');
+const App = () => {
+  const [senha, setSenha] = useState([]);
+  const [inputText, setInputText] = useState('');
   const [esconder, setEsconder] = useState(true);
 
-  const [botao1, setBotao1] = useState(true);
-  const [texto, setTexto] = useState("ADICIONAR LOGIN");
+  const TextoInserido = (text) => {
+    setInputText(text);
+  };
 
-  const apertou = () => {
-    setBotao1(!botao1);
-
-
-    if (botao1 == false) {
-      setTexto("ADICIONAR LOGIN")
-    } else if (botao1 == true) {
-      setTexto("ESCONDER LOGIN")
+  const adicionarSenha = () => {
+    if (inputText !== '') {
+      setSenha([
+        ...senha,
+        { id: new Date().getTime().toString(), content: inputText },
+      ]);
+      setInputText('');
     }
   };
 
-  return (
-    //Conceito de View (0,5 pontos)
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <View>
-        <Text style={styles.login}>Login's Security</Text>
+  const removerSenha = (id) => {
+    setSenha(senha.filter((suggestion) => suggestion.id !== id));
+  };
+
+  const listaSenhas = ({ item }) => (
+    <TouchableOpacity
+      style={styles.suggestionItem}
+      onPress={() => removerSenha(item.id)}>
+      <Ionicons style={styles.botaoRemover}name="remove-circle" size={30} color="red" />
+      <View style={styles.suggestionItemContent}>
+        <Text>Senha guardada: </Text>
+        <Text style={styles.suggestionItemText}>{item.content}</Text>
       </View>
-      <View style={styles.alinhar}>
-        <View style={styles.box}>
-          <MaterialIcons name="email" size={20} color="black" style={styles.icon} />
+    </TouchableOpacity>
+  );
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>Login's Security</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <View style={styles.inputContainerFilho} >
           <TextInput
             style={styles.input}
-            placeholder="Enter site name"
-            placeholderTextColor={'#d3d3d3'}
-            onChangeText={(textoDigitado) => setSite(textoDigitado)}
-          />
-          <View style={styles.olho}>
-          </View>
-        </View>
-        <View style={styles.box}>
-          <Ionicons name="ios-key" size={20} color="black" style={styles.icon} />
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor={'#d3d3d3'}
-            onChangeText={(senhaDigitada) => setSenha(senhaDigitada)}
+            onChangeText={TextoInserido}
+            value={inputText}
+            placeholder="Digite a sua senha!"
             secureTextEntry={esconder}
           />
           <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
             <Ionicons name='eye' color="black" size={25} />
           </TouchableOpacity>
         </View>
-        <View>
-          <Button title={texto} onPress={apertou} color='red' />
-        </View>
+        <Ionicons name="add-circle" size={40} color="black" onPress={adicionarSenha} style={styles.adicionar} />
       </View>
-      <View>
-        {
-          botao1 
-          ? 
-          null 
-          :
-          <Text> Email: {email} | Senha: {senha}</Text>
-        }
-      </View>
-
-
-
+      <ScrollView style={styles.espacoLista}>
+        <FlatList
+          data={senha}
+          renderItem={listaSenhas}
+          keyExtractor={(item) => item.id}
+        />
+      </ScrollView>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-
   container: {
     flex: 1,
+    padding: 16,
     backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-
-  login: {
-    fontSize: 38,
-    marginBottom: 25,
-  },
-
-  box: {
-    flexDirection: 'row',
-    width: '75%',
-    borderColor: '#777',
-    borderRadius: 12,
-    alignItems: 'center',
-    margin: 10,
-    borderWidth: 1,
-  },
-
-  icon: {
-    padding: 10,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '10%',
-  },
-
-  olho: {
-    flex: 1,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingRight: 8,
-  },
-
-  input: {
-    width: '75%',
-    height: 50,
-    color: 'black',
-    fontSize: 16,
-  },
-
-  alinhar: {
+  title: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
   },
-
+  titleText: {
+    backgroundColor: 'red',
+    borderRadius: 25,
+    color: 'white',
+    fontSize: 30,
+    padding: 10,
+    margin: '5%',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  olho: {
+    paddingRight: 10,
+  },
+  adicionar: {
+    paddingLeft: 8,
+    height: 58,
+  },
+  inputContainerFilho: {
+    width: '85%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+    borderColor: '#777',
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    paddingLeft: 16,
+    paddingRight: 16,
+    marginRight: 8,
+    color: 'black'
+  },
+  espacoLista: {
+    paddingTop: 5,
+    flex: 1,
+    borderColor: '#777',
+    borderRadius: 12,
+    borderWidth: 2,
+  },
+  suggestionItem: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    paddingBottom: 8,
+    marginBottom: 8,
+  },
+  botaoRemover: {
+    marginLeft: 10,
+  },
+  suggestionItemContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+    marginLeft: 8,
+  },
+  suggestionItemText: {
+    fontSize: 16,
+    color: 'grey',
+  },
 });
+
+export default App;
