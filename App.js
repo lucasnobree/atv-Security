@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   input: {
+    // *Criarlayoutsutilizandooflexbox
     flex: 1,
     height: 40,
     paddingLeft: 16,
