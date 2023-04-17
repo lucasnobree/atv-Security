@@ -3,6 +3,7 @@ import {
   View, Text, StyleSheet, TextInput, Button, FlatList, ScrollView, TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+// *Utilizarabiblioteca@expo/vector-icons0
 
 const App = () => {
   const [senha, setSenha] = useState([]);
@@ -10,7 +11,7 @@ const App = () => {
   const [esconder, setEsconder] = useState(true);
   const [botao, setBotao] = useState("AVANÇAR");
   const [botao1, setBotao1] = useState(true);
-
+  // *Utilizarocontroledeestadoscomo"useState"
   const TextoInserido = (text) => {
     setInputText(text);
   };
@@ -43,6 +44,7 @@ const App = () => {
       style={styles.suggestionItem}
       onPress={() => removerSenha(item.id)}>
       <Ionicons style={styles.botaoRemover} name="remove-circle" size={30} color="red" />
+      {/* *Utilizarabiblioteca@expo/vector-icons */}
       <View style={styles.suggestionItemContent}>
         <Text>Senha guardada: </Text>
         <Text style={styles.suggestionItemText}>{item.content}</Text>
@@ -51,6 +53,7 @@ const App = () => {
   );
 
   return (
+    // *Utilizarosconceitosde"View"
     <View style={styles.topo}>
       {
         botao1
@@ -58,6 +61,7 @@ const App = () => {
           <View style={styles.front}>
             <View>
               <Text style={styles.titleFront}>Login's Security</Text>
+              {/* *Utilizarosconceitosde"Text" */}
             </View>
             <View style={styles.textFront}>
               <Text style={{ fontSize: 18 }}>Maior segurança para o</Text>
@@ -65,6 +69,7 @@ const App = () => {
               <Text>Aperte o botão abaixo para iniciar os testes!</Text>
             </View>
             <Button title={botao} onPress={apertou} color='red' />
+            {/* *Utilizarosconceitosde"Button"e"onPress" */}
             <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200 }}>
               Algumas funções como, "secureTextEntry" nas senhas já adicionadas,
               e implementação de outro "input" para informar o nome do App ou site cadastrado,
@@ -79,6 +84,7 @@ const App = () => {
             </View>
             <View style={styles.inputContainer}>
               <View style={styles.inputContainerFilho} >
+              {/* *Utilizarosconceitosde"TextInput"e"onChangeText" */}
                 <TextInput
                   style={styles.input}
                   onChangeText={TextoInserido}
@@ -86,6 +92,7 @@ const App = () => {
                   placeholder="Digite a sua senha!"
                   secureTextEntry={esconder}
                 />
+                {/* *Utilizarosconceitosde"FlatList"e"TouchableComponents"” */}
                 <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
                   <Ionicons name='eye' color="black" size={30} />
                 </TouchableOpacity>
@@ -94,6 +101,7 @@ const App = () => {
             </View>
             {/* Dando um pequeno erro, porém não afetando na funcionabilidade, solução: <NestableDraggableFlatList> : Como não conheço, não usarei. */}
             <ScrollView style={styles.espacoLista}>
+            {/* *Utilizarosconceitosde"List"e"ScrollView"” */}
               <FlatList
                 data={senha}
                 renderItem={listaSenhas}
@@ -101,6 +109,7 @@ const App = () => {
               />
             </ScrollView>
             <Button title={botao} onPress={apertou} color='red' style={{}} />
+            {/* *Utilizarosconceitosde"Button"e"onPress" */}
           </View>
       }
     </View>
