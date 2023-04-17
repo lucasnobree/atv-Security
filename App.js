@@ -3,7 +3,7 @@ import {
   View, Text, StyleSheet, TextInput, Button, FlatList, ScrollView, TouchableOpacity
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-// *Utilizarabiblioteca@expo/vector-icons0
+// *Utilizara biblioteca @expo/vector-icons0
 
 const App = () => {
   const [senha, setSenha] = useState([]);
@@ -11,7 +11,7 @@ const App = () => {
   const [esconder, setEsconder] = useState(true);
   const [botao, setBotao] = useState("AVANÇAR");
   const [botao1, setBotao1] = useState(true);
-  // *Utilizarocontroledeestadoscomo"useState"
+  // *Utilizaro controle de estadosc omo "useState"
   const TextoInserido = (text) => {
     setInputText(text);
   };
@@ -36,24 +36,24 @@ const App = () => {
   };
 
   const removerSenha = (id) => {
-    setSenha(senha.filter((suggestion) => suggestion.id !== id));
+    setSenha(senha.filter((info) => info.id !== id));
   };
 
   const listaSenhas = ({ item }) => (
     <TouchableOpacity
-      style={styles.suggestionItem}
+      style={styles.infoItem}
       onPress={() => removerSenha(item.id)}>
       <Ionicons style={styles.botaoRemover} name="remove-circle" size={30} color="red" />
-      {/* *Utilizarabiblioteca@expo/vector-icons */}
-      <View style={styles.suggestionItemContent}>
+      {/* *Utilizar a biblioteca @expo/vector-icons */}
+      <View style={styles.infoBloco}>
         <Text>Senha guardada: </Text>
-        <Text style={styles.suggestionItemText}>{item.content}</Text>
+        <Text style={styles.infoText}>{item.content}</Text>
       </View>
     </TouchableOpacity>
   );
 
   return (
-    // *Utilizarosconceitosde"View"
+    // *Utilizar os conceitos de "View"
     <View style={styles.topo}>
       {
         botao1
@@ -61,7 +61,7 @@ const App = () => {
           <View style={styles.front}>
             <View>
               <Text style={styles.titleFront}>Login's Security</Text>
-              {/* *Utilizarosconceitosde"Text" */}
+              {/* *Utilizar os conceitos de "Text" */}
             </View>
             <View style={styles.textFront}>
               <Text style={{ fontSize: 18 }}>Maior segurança para o</Text>
@@ -69,7 +69,7 @@ const App = () => {
               <Text>Aperte o botão abaixo para iniciar os testes!</Text>
             </View>
             <Button title={botao} onPress={apertou} color='red' />
-            {/* *Utilizarosconceitosde"Button"e"onPress" */}
+            {/* *Utilizar os conceitos de "Button" e "onPress" */}
             <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200 }}>
               Algumas funções como, "secureTextEntry" nas senhas já adicionadas,
               e implementação de outro "input" para informar o nome do App ou site cadastrado,
@@ -84,7 +84,7 @@ const App = () => {
             </View>
             <View style={styles.inputContainer}>
               <View style={styles.inputContainerFilho} >
-              {/* *Utilizarosconceitosde"TextInput"e"onChangeText" */}
+              {/* *Utilizar os conceitos de "TextInput" e "onChangeText" */}
                 <TextInput
                   style={styles.input}
                   onChangeText={TextoInserido}
@@ -92,7 +92,7 @@ const App = () => {
                   placeholder="Digite a sua senha!"
                   secureTextEntry={esconder}
                 />
-                {/* *Utilizarosconceitosde"FlatList"e"TouchableComponents"” */}
+                {/* *Utilizar os conceitos de "FlatList" e "TouchableComponents"” */}
                 <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
                   <Ionicons name='eye' color="black" size={30} />
                 </TouchableOpacity>
@@ -101,7 +101,7 @@ const App = () => {
             </View>
             {/* Dando um pequeno erro, porém não afetando na funcionabilidade, solução: <NestableDraggableFlatList> : Como não conheço, não usarei. */}
             <ScrollView style={styles.espacoLista}>
-            {/* *Utilizarosconceitosde"List"e"ScrollView"” */}
+            {/* *Utilizar os conceitos de "List" e "ScrollView"” */}
               <FlatList
                 data={senha}
                 renderItem={listaSenhas}
@@ -109,7 +109,7 @@ const App = () => {
               />
             </ScrollView>
             <Button title={botao} onPress={apertou} color='red' style={{}} />
-            {/* *Utilizarosconceitosde"Button"e"onPress" */}
+            {/* *Utilizar os conceitos de "Button" e "onPress" */}
           </View>
       }
     </View>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   input: {
-    // *Criarlayoutsutilizandooflexbox
+    // *Criar layouts utilizan do o flex box
     flex: 1,
     height: 40,
     paddingLeft: 16,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     borderColor: '#777',
     borderWidth: 2,
   },
-  suggestionItem: {
+  infoItem: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -205,13 +205,13 @@ const styles = StyleSheet.create({
   botaoRemover: {
     marginLeft: 10,
   },
-  suggestionItemContent: {
+  infoBloco: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
     marginLeft: 8,
   },
-  suggestionItemText: {
+  infoText: {
     fontSize: 16,
     color: 'grey',
   },
