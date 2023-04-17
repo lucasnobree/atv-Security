@@ -8,6 +8,7 @@ const App = () => {
   const [senha, setSenha] = useState([]);
   const [inputText, setInputText] = useState('');
   const [esconder, setEsconder] = useState(true);
+  const [botao, setBotao] = useState("AVANÇAR");
   const [botao1, setBotao1] = useState(true);
 
   const TextoInserido = (text) => {
@@ -16,6 +17,11 @@ const App = () => {
 
   const apertou = () => {
     setBotao1(!botao1)
+    if (botao1 == false) {
+      setBotao("AVANÇAR")
+    } else if (botao1 == true) {
+      setBotao("VOLTAR")
+    }
   };
 
   const adicionarSenha = () => {
@@ -58,7 +64,7 @@ const App = () => {
               <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 100, }}>USUÁRIO</Text>
               <Text>Aperte o botão abaixo para iniciar os testes!</Text>
             </View>
-            <Button title='Avançar' onPress={apertou} color='red' />
+            <Button title={botao} onPress={apertou} color='red' />
               <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200}}>Algumas funções como, "secureTextEntry" nas senhas já adicionadas, e implementação de outro "input" para informar o nome do App ou site cadastrado, não foram adicionadas por motivos de falta de ferramentas. Porém, estamos dispostos à implementar após esclarecimentos!</Text>
           </View>
           :
@@ -81,6 +87,7 @@ const App = () => {
               </View>
               <Ionicons name="add-circle" size={40} color="black" onPress={adicionarSenha} style={styles.adicionar} />
             </View>
+            {/* Dando um pequeno erro, porém não afetando na funcionabilidade, solução: <NestableDraggableFlatList> : Como não conheço, não usarei. */}
             <ScrollView style={styles.espacoLista}>
               <FlatList
                 data={senha}
@@ -88,6 +95,7 @@ const App = () => {
                 keyExtractor={(item) => item.id}
               />
             </ScrollView>
+            <Button title={botao} onPress={apertou} color='red' style={{}}/>
           </View>
       }
     </View>
@@ -168,7 +176,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     flex: 1,
     borderColor: '#777',
-    borderRadius: 12,
     borderWidth: 2,
   },
   suggestionItem: {
