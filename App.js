@@ -8,9 +8,14 @@ const App = () => {
   const [senha, setSenha] = useState([]);
   const [inputText, setInputText] = useState('');
   const [esconder, setEsconder] = useState(true);
+  const [botao1, setBotao1] = useState(true);
 
   const TextoInserido = (text) => {
     setInputText(text);
+  };
+
+  const apertou = () => {
+    setBotao1(!botao1)
   };
 
   const adicionarSenha = () => {
@@ -31,7 +36,7 @@ const App = () => {
     <TouchableOpacity
       style={styles.suggestionItem}
       onPress={() => removerSenha(item.id)}>
-      <Ionicons style={styles.botaoRemover}name="remove-circle" size={30} color="red" />
+      <Ionicons style={styles.botaoRemover} name="remove-circle" size={30} color="red" />
       <View style={styles.suggestionItemContent}>
         <Text>Senha guardada: </Text>
         <Text style={styles.suggestionItemText}>{item.content}</Text>
@@ -40,37 +45,54 @@ const App = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>Login's Security</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <View style={styles.inputContainerFilho} >
-          <TextInput
-            style={styles.input}
-            onChangeText={TextoInserido}
-            value={inputText}
-            placeholder="Digite a sua senha!"
-            secureTextEntry={esconder}
-          />
-          <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
-            <Ionicons name='eye' color="black" size={25} />
-          </TouchableOpacity>
-        </View>
-        <Ionicons name="add-circle" size={40} color="black" onPress={adicionarSenha} style={styles.adicionar} />
-      </View>
-      <ScrollView style={styles.espacoLista}>
-        <FlatList
-          data={senha}
-          renderItem={listaSenhas}
-          keyExtractor={(item) => item.id}
-        />
-      </ScrollView>
+    <View style={styles.topo}>
+      {
+        botao1
+          ?
+          <View>
+            <Text>App com o intuito de guardar senhas</Text>
+            <Button title='{texto}' onPress={apertou} color='red'/>
+          </View>
+          :
+          <View style={styles.container}>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>Login's Security</Text>
+            </View>
+            <View style={styles.inputContainer}>
+              <View style={styles.inputContainerFilho} >
+                <TextInput
+                  style={styles.input}
+                  onChangeText={TextoInserido}
+                  value={inputText}
+                  placeholder="Digite a sua senha!"
+                  secureTextEntry={esconder}
+                />
+                <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
+                  <Ionicons name='eye' color="black" size={25} />
+                </TouchableOpacity>
+              </View>
+              <Ionicons name="add-circle" size={40} color="black" onPress={adicionarSenha} style={styles.adicionar} />
+            </View>
+            <ScrollView style={styles.espacoLista}>
+              <FlatList
+                data={senha}
+                renderItem={listaSenhas}
+                keyExtractor={(item) => item.id}
+              />
+            </ScrollView>
+          </View>
+      }
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+
+  topo: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     padding: 16,
