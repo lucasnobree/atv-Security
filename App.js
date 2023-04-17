@@ -65,7 +65,12 @@ const App = () => {
               <Text>Aperte o botão abaixo para iniciar os testes!</Text>
             </View>
             <Button title={botao} onPress={apertou} color='red' />
-              <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200}}>Algumas funções como, "secureTextEntry" nas senhas já adicionadas, e implementação de outro "input" para informar o nome do App ou site cadastrado, não foram adicionadas por motivos de falta de ferramentas. Porém, estamos dispostos à implementar após esclarecimentos!</Text>
+            <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200 }}>
+              Algumas funções como, "secureTextEntry" nas senhas já adicionadas,
+              e implementação de outro "input" para informar o nome do App ou site cadastrado,
+              não foram adicionadas por motivos de falta de ferramentas. Porém,
+              estamos dispostos à implementar após esclarecimentos!
+            </Text>
           </View>
           :
           <View style={styles.container}>
@@ -95,7 +100,7 @@ const App = () => {
                 keyExtractor={(item) => item.id}
               />
             </ScrollView>
-            <Button title={botao} onPress={apertou} color='red' style={{}}/>
+            <Button title={botao} onPress={apertou} color='red' style={{}} />
           </View>
       }
     </View>
