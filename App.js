@@ -49,9 +49,17 @@ const App = () => {
       {
         botao1
           ?
-          <View>
-            <Text>App com o intuito de guardar senhas</Text>
-            <Button title='{texto}' onPress={apertou} color='red'/>
+          <View style={styles.front}>
+            <View>
+              <Text style={styles.titleFront}>Login's Security</Text>
+            </View>
+            <View style={styles.textFront}>
+              <Text style={{ fontSize: 18 }}>Maior segurança para o</Text>
+              <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 100, }}>USUÁRIO</Text>
+              <Text>Aperte o botão abaixo para iniciar os testes!</Text>
+            </View>
+            <Button title='Avançar' onPress={apertou} color='red' />
+              <Text style={{ fontSize: 10, color: 'grey', margin: 50, marginTop: 200}}>Algumas funções como, "secureTextEntry" nas senhas já adicionadas, e implementação de outro "input" para informar o nome do App ou site cadastrado, não foram adicionadas por motivos de falta de ferramentas. Porém, estamos dispostos à implementar após esclarecimentos!</Text>
           </View>
           :
           <View style={styles.container}>
@@ -68,7 +76,7 @@ const App = () => {
                   secureTextEntry={esconder}
                 />
                 <TouchableOpacity style={styles.olho} onPress={() => setEsconder(!esconder)}>
-                  <Ionicons name='eye' color="black" size={25} />
+                  <Ionicons name='eye' color="black" size={30} />
                 </TouchableOpacity>
               </View>
               <Ionicons name="add-circle" size={40} color="black" onPress={adicionarSenha} style={styles.adicionar} />
@@ -92,6 +100,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  front: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  titleFront: {
+    backgroundColor: 'red',
+    borderRadius: 25,
+    color: 'white',
+    fontSize: 30,
+    padding: 10,
+    marginTop: 65,
+    marginBottom: 200,
+  },
+  textFront: {
+    alignItems: 'center',
+    margin: 20,
   },
   container: {
     flex: 1,
@@ -119,7 +145,7 @@ const styles = StyleSheet.create({
   },
   adicionar: {
     paddingLeft: 8,
-    height: 58,
+    height: 60,
   },
   inputContainerFilho: {
     width: '85%',
